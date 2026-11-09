@@ -41,7 +41,7 @@ export class AppComponent implements OnDestroy {
   private dropClock = 0;
   private audio?: AudioContext;
   private touchStartX = 0;
-private touchStartY = 0;
+  private touchStartY = 0;
 
   get speedLabel(): string { return `${this.level}.0x`; }
   get progress(): number { return (this.lines % 10) * 10; }
@@ -121,6 +121,49 @@ private touchStartY = 0;
     this.running = true; this.paused = false; this.gameOver = false;
     this.dropClock = 0; this.lastTime = 0;
     this.tick();
+  }
+
+  playAction(): void {
+    if (this.running && this.paused && !this.gameOver) {
+      this.togglePause();
+      return;
+    }
+    this.startGame();
+  }
+
+  boardTouchStart(event: TouchEvent): void {
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    this.touchStartX = touch.clientX;
+    this.touchStartY = touch.clientY;
+  }
+
+  boardTouchEnd(event: TouchEvent): void {
+    if (!this.running || this.paused || this.gameOver) return;
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const dx = touch.clientX - this.touchStartX;
+    const dy = touch.clientY - this.touchStartY;
+    const threshold = 18;
+
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < threshold) {
+      this.rotate();
+    } else if (Math.abs(dx) > Math.abs(dy)) {
+      this.move(dx > 0 ? 1 : -1, 0);
+    } else if (dy > 0) {
+      this.move(0, 1);
+    } else {
+      this.hardDrop();
+    }
+
+    this.touchStartX = 0;
+    this.touchStartY = 0;
+  }
+
+  boardTouchCancel(): void {
+    this.touchStartX = 0;
+    this.touchStartY = 0;
   }
 
   togglePause(): void {
