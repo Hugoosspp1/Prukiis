@@ -40,6 +40,8 @@ export class AppComponent implements OnDestroy {
   private lastTime = 0;
   private dropClock = 0;
   private audio?: AudioContext;
+  private touchStartX = 0;
+private touchStartY = 0;
 
   get speedLabel(): string { return `${this.level}.0x`; }
   get progress(): number { return (this.lines % 10) * 10; }
