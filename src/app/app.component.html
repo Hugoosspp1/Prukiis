@@ -1,0 +1,187 @@
+<div class="app-shell" id="inicio">
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="PRUKIIS, inicio">
+      <img src="/images/prukiis-logo.png?v=2" alt="PRUKIIS" class="brand-logo">
+    </a>
+
+    <nav class="top-nav" aria-label="Navegación principal">
+      <a class="top-link active-link" href="#inicio">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+        Inicio
+      </a>
+      <button class="top-link" type="button" (click)="playAction()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5h11a4.5 4.5 0 0 1 4.4 5.4l-.7 3.1a2 2 0 0 1-3.3 1l-2.6-2.2H8.7l-2.6 2.2a2 2 0 0 1-3.3-1l-.7-3.1a4.5 4.5 0 0 1 4.4-5.4z"/><path d="M8 12v4m-2-2h4m7-1h.01M19 15h.01"/></svg>
+        Jugar
+      </button>
+      <a class="top-link" href="#progreso">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8m-4-4v4M7 4H3v3a5 5 0 0 0 5 5m9-8h4v3a5 5 0 0 1-5 5M7 3h10v8a5 5 0 0 1-10 0z"/></svg>
+        Récord
+      </a>
+      <button class="top-link help-link" type="button" (click)="showHelp = true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.4 2.4 0 1 1 4.1 1.7c-1 .9-1.8 1.3-1.8 2.8m0 3h.01"/></svg>
+        Ayuda
+      </button>
+    </nav>
+
+    <a class="record-pill" href="#progreso" aria-label="Ver récord personal">
+      <span class="record-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M8 21h8m-4-4v4M7 4H3v3a5 5 0 0 0 5 5m9-8h4v3a5 5 0 0 1-5 5M7 3h10v8a5 5 0 0 1-10 0z"/></svg>
+      </span>
+      <span><small>RÉCORD PERSONAL</small><strong>{{ formatScore(best) }}</strong></span>
+    </a>
+  </header>
+
+  <div class="dashboard-grid" [class.game-active]="running || gameOver">
+    <aside class="side-rail" aria-label="Accesos rápidos">
+      <p class="rail-label">MENÚ</p>
+      <a class="rail-link selected" href="#inicio">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+        Inicio
+      </a>
+      <button class="rail-link" type="button" (click)="playAction()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5h11a4.5 4.5 0 0 1 4.4 5.4l-.7 3.1a2 2 0 0 1-3.3 1l-2.6-2.2H8.7l-2.6 2.2a2 2 0 0 1-3.3-1l-.7-3.1a4.5 4.5 0 0 1 4.4-5.4z"/><path d="M8 12v4m-2-2h4m7-1h.01M19 15h.01"/></svg>
+        Jugar clásico
+      </button>
+      <a class="rail-link" href="#progreso">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m8 10V4m8 15v-7"/></svg>
+        Tu progreso
+      </a>
+      <button class="rail-link" type="button" (click)="showHelp = true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.4 2.4 0 1 1 4.1 1.7c-1 .9-1.8 1.3-1.8 2.8m0 3h.01"/></svg>
+        Cómo jugar
+      </button>
+
+      <div class="rail-note">
+        <span class="online-dot"></span>
+        <div><strong>Modo clásico</strong><small>Listo cuando tú quieras</small></div>
+      </div>
+    </aside>
+
+    <main class="center-column">
+      <section class="hero-card" *ngIf="!running && !gameOver" aria-labelledby="hero-title">
+        <div class="floating-piece piece-cyan" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="floating-piece piece-gold" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="floating-piece piece-pink" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="hero-content">
+          <span class="hero-eyebrow"><span></span> PRUKIIS ARCADE</span>
+          <img src="/images/prukiis-logo.png?v=2" alt="PRUKIIS" class="hero-logo">
+          <h1 id="hero-title">EL CLÁSICO DE LOS BLOQUES, EVOLUCIONADO</h1>
+          <p>Una partida. Tu ritmo. Tu récord.</p>
+          <button class="start-button" type="button" (click)="playAction()">
+            <span class="play-triangle" aria-hidden="true"></span>
+            <span class="start-button-text"><strong>JUGAR</strong><small>PARTIDA CLÁSICA</small></span>
+          </button>
+          <div class="hero-footnote"><span>∞ <b>Sin límite de tiempo</b></span><i></i><span>Récord guardado en este dispositivo</span></div>
+        </div>
+      </section>
+
+      <section class="feature-section" *ngIf="!running && !gameOver" aria-labelledby="feature-title">
+        <div class="section-heading">
+          <div><span class="section-kicker">PREPARADO PARA JUGAR</span><h2 id="feature-title">Tu espacio de juego</h2></div>
+          <span class="section-side-note">Una experiencia clásica, hecha para cualquier pantalla</span>
+        </div>
+        <div class="feature-grid">
+          <button class="feature-card feature-play" type="button" (click)="playAction()">
+            <span class="feature-icon blocks-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="feature-label">DISPONIBLE</span>
+            <strong>Clásico</strong>
+            <small>Empieza una partida</small>
+            <span class="feature-arrow" aria-hidden="true">↗</span>
+          </button>
+          <div class="feature-card feature-lines">
+            <span class="feature-icon line-icon" aria-hidden="true">▦</span>
+            <span class="feature-label">EL TABLERO</span>
+            <strong>10 × 20</strong>
+            <small>El campo de juego original</small>
+          </div>
+          <div class="feature-card feature-level">
+            <span class="feature-icon level-icon" aria-hidden="true">↗</span>
+            <span class="feature-label">EL RETO</span>
+            <strong>Niveles</strong>
+            <small>El ritmo aumenta al avanzar</small>
+          </div>
+          <button class="feature-card feature-help" type="button" (click)="showHelp = true">
+            <span class="feature-icon help-icon" aria-hidden="true">?</span>
+            <span class="feature-label">CONTROLES</span>
+            <strong>Controles táctiles</strong>
+            <small>Desliza directamente sobre el tablero</small>
+            <span class="feature-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="game-stage" *ngIf="running || gameOver" id="juego" aria-labelledby="game-title">
+        <div class="stage-heading">
+          <div><span class="live-indicator" [class.paused-indicator]="paused"></span><span class="stage-kicker">{{ gameOver ? 'PARTIDA TERMINADA' : paused ? 'EN PAUSA' : 'PARTIDA EN CURSO' }}</span><h1 id="game-title">Clásico</h1></div>
+          <button class="pause-button" *ngIf="running && !gameOver" type="button" (click)="togglePause()">{{ paused ? '▶ Continuar' : 'Ⅱ Pausar' }}</button>
+        </div>
+
+        <div class="game-scorebar">
+          <div class="game-stat main-game-stat"><span>PUNTUACIÓN</span><strong>{{ formatScore(score) }}</strong></div>
+          <div class="game-stat"><span>FILAS</span><strong>{{ lines }}</strong></div>
+          <div class="game-stat"><span>NIVEL</span><strong>{{ level }}</strong></div>
+          <div class="next-stat"><span>SIGUIENTE</span><div class="next-grid" aria-label="Siguiente pieza"><span *ngFor="let color of nextCells" [style.background]="color || 'transparent'" [class.has-block]="!!color" [style.--block-color]="color || 'transparent'"></span></div></div>
+        </div>
+
+        <div class="board-frame">
+          <div class="board" role="application" aria-label="Tablero de PRUKIIS. Toca para girar; desliza para mover, bajar y soltar." (touchstart)="boardTouchStart($event)" (touchend)="boardTouchEnd($event)" (touchcancel)="boardTouchCancel()">
+            <div class="grid-cell" *ngFor="let cell of cells" [class.occupied]="!!cell.color && !cell.color.startsWith('ghost:')" [class.ghost]="!!cell.color && cell.color.startsWith('ghost:')" [style.--block-color]="cell.color?.replace('ghost:', '') || 'transparent'"></div>
+            <div class="board-overlay" *ngIf="paused || gameOver">
+              <span class="overlay-kicker">{{ gameOver ? 'FIN DE LA PARTIDA' : 'TÓMATE TU TIEMPO' }}</span>
+              <h2>{{ gameOver ? 'Buen intento' : 'Partida en pausa' }}</h2>
+              <p *ngIf="gameOver">Puntuación: {{ formatScore(score) }}</p>
+              <button class="overlay-button" type="button" (click)="paused && !gameOver ? togglePause() : playAction()">{{ gameOver ? 'Jugar otra vez' : 'Continuar' }}</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="gesture-hint">Toca para girar <i>·</i> desliza para mover <i>·</i> desliza hacia arriba para soltar</p>
+      </section>
+    </main>
+
+    <aside class="right-rail" id="progreso" aria-label="Progreso de la partida">
+      <section class="glass-panel progress-panel">
+        <header class="panel-heading">
+          <span class="panel-icon chart-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V11m5 9V5m5 15v-7m5 7V3"/></svg></span>
+          <h2>TU PROGRESO</h2>
+        </header>
+        <div class="progress-row"><span><i class="row-icon star-icon">★</i>Nivel</span><strong>{{ level }}</strong></div>
+        <div class="progress-row"><span><i class="row-icon grid-icon">▦</i>Filas completas</span><strong>{{ lines }}</strong></div>
+        <div class="progress-row"><span><i class="row-icon trophy-icon">♛</i>Mejor puntuación</span><strong>{{ formatScore(best) }}</strong></div>
+        <div class="progress-row current-score-row"><span><i class="row-icon score-icon">◆</i>Esta partida</span><strong>{{ formatScore(score) }}</strong></div>
+      </section>
+
+      <section class="glass-panel next-level-panel">
+        <header class="panel-heading">
+          <span class="panel-icon medal-icon" aria-hidden="true">✦</span>
+          <h2>PRÓXIMO NIVEL</h2>
+        </header>
+        <div class="milestone-card">
+          <span class="milestone-badge" aria-hidden="true">{{ level + 1 }}</span>
+          <div class="milestone-info"><strong>Nivel {{ level + 1 }}</strong><small>{{ 10 - (lines % 10) }} filas para avanzar</small></div>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Progreso hacia el siguiente nivel" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100"><span [style.width.%]="progress"></span></div>
+        <p class="progress-caption"><span>{{ lines % 10 }} de 10 filas</span><strong>{{ progress }}%</strong></p>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="site-footer"><span>PRUKIIS ARCADE</span><i></i><span>Partidas y récords guardados en este dispositivo</span></footer>
+</div>
+
+<div class="help-modal" *ngIf="showHelp" (click)="showHelp = false">
+  <section class="help-panel" role="dialog" aria-modal="true" aria-labelledby="help-title" (click)="$event.stopPropagation()">
+    <button class="close-help" type="button" (click)="showHelp = false" aria-label="Cerrar ayuda">×</button>
+    <span class="modal-kicker">GUÍA RÁPIDA</span>
+    <h2 id="help-title">Cómo jugar</h2>
+    <p>Encaja las piezas y completa filas horizontales para sumar puntos. Cada diez filas subes de nivel y las piezas caen más rápido.</p>
+    <div class="help-controls">
+      <div><span>↔</span><p><strong>Mover</strong><small>Desliza a izquierda o derecha.</small></p></div>
+      <div><span>↓</span><p><strong>Bajar</strong><small>Desliza hacia abajo.</small></p></div>
+      <div><span>↻</span><p><strong>Girar</strong><small>Toca el tablero.</small></p></div>
+      <div><span>↑</span><p><strong>Soltar</strong><small>Desliza hacia arriba.</small></p></div>
+    </div>
+    <div class="mobile-help-note"><strong>Controles táctiles</strong><span>Juega directamente sobre el tablero.</span></div>
+    <button class="modal-button" type="button" (click)="showHelp = false">ENTENDIDO</button>
+  </section>
+</div>
