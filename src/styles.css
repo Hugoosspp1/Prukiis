@@ -1,0 +1,19 @@
+:root {
+  color-scheme: dark;
+  --bg: #070b16;
+  --panel: rgba(13, 21, 39, .88);
+  --line: rgba(139, 169, 216, .15);
+  --muted: #7787a5;
+  --cyan: #55e8ff;
+  --lime: #c7ff5e;
+  --violet: #a78bfa;
+  --pink: #ff6bc5;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); }
+body { font-family: var(--font-body); color: #f4f7ff; }
+button { font: inherit; }
+::selection { background: rgba(85,232,255,.25); }
