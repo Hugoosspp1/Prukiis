@@ -135,6 +135,24 @@
           </div>
         </div>
 
+        <div class="mobile-controls" *ngIf="running && !paused && !gameOver" role="group" aria-label="Mando táctil">
+          <button class="mobile-control" type="button" (click)="move(-1, 0)" aria-label="Mover a la izquierda">
+            <span class="control-symbol" aria-hidden="true">←</span><small>IZQUIERDA</small>
+          </button>
+          <button class="mobile-control" type="button" (click)="move(0, 1)" aria-label="Bajar pieza">
+            <span class="control-symbol" aria-hidden="true">↓</span><small>BAJAR</small>
+          </button>
+          <button class="mobile-control" type="button" (click)="move(1, 0)" aria-label="Mover a la derecha">
+            <span class="control-symbol" aria-hidden="true">→</span><small>DERECHA</small>
+          </button>
+          <button class="mobile-control action-control" type="button" (click)="rotate()" aria-label="Girar pieza">
+            <span class="control-symbol" aria-hidden="true">↻</span><small>GIRAR</small>
+          </button>
+          <button class="mobile-control drop-control" type="button" (click)="hardDrop()" aria-label="Soltar pieza">
+            <span class="control-symbol" aria-hidden="true">⇊</span><small>SOLTAR</small>
+          </button>
+        </div>
+
         <p class="gesture-hint">Toca para girar <i>·</i> desliza para mover <i>·</i> desliza hacia arriba para soltar</p>
       </section>
     </main>
@@ -181,7 +199,7 @@
       <div><span>↻</span><p><strong>Girar</strong><small>Toca el tablero.</small></p></div>
       <div><span>↑</span><p><strong>Soltar</strong><small>Desliza hacia arriba.</small></p></div>
     </div>
-    <div class="mobile-help-note"><strong>Controles táctiles</strong><span>Juega directamente sobre el tablero.</span></div>
+    <div class="mobile-help-note"><strong>Controles táctiles</strong><span>Usa los botones bajo el tablero o desliza directamente sobre él.</span></div>
     <button class="modal-button" type="button" (click)="showHelp = false">ENTENDIDO</button>
   </section>
 </div>
