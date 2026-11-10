@@ -27,3 +27,11 @@ npm run build
 - En móvil: controles táctiles bajo el tablero
 
 El récord se guarda en localStorage del navegador.
+
+## Android APK
+Instala Android Studio y el SDK de Android. La primera vez, crea el proyecto nativo y compila:
+```bash
+npx cap add android
+npm run android:apk
+```
+El APK de depuración se genera en `android/app/build/outputs/apk/debug/app-debug.apk`.
