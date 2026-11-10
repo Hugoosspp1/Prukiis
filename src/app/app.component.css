@@ -244,14 +244,21 @@ button.feature-card { font-family: var(--font-body); cursor: pointer; }
 .board-overlay p { margin: 6px 0 0; color: #b8c7e0; font-size: 13px; }
 .overlay-button { min-height: 44px; margin-top: 15px; padding: 0 20px; border: 1px solid #53dfff; border-radius: 11px; background: linear-gradient(120deg, #097dce, #3245d0); box-shadow: 0 0 14px rgba(22, 157, 255, .35), inset 0 1px rgba(255, 255, 255, .2); color: #fff; font: 800 12px var(--font-body); cursor: pointer; touch-action: manipulation; }
 .mobile-controls { display: none; }
-.mobile-control { min-width: 0; min-height: 58px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 5px 2px; border: 1px solid rgba(76, 153, 255, .58); border-radius: 13px; background: linear-gradient(155deg, #17376f, #0a1a42); box-shadow: inset 0 1px rgba(255, 255, 255, .1), 0 4px 12px rgba(0, 0, 0, .22); color: #f2f8ff; font-family: var(--font-body); cursor: pointer; touch-action: manipulation; user-select: none; -webkit-tap-highlight-color: transparent; }
-.mobile-control:active { transform: translateY(1px) scale(.97); border-color: #75e9ff; background: linear-gradient(155deg, #24559b, #102b5d); }
-.control-symbol { font-size: 23px; font-weight: 800; line-height: 1; }
-.mobile-control small { color: #b8d1f1; font-size: 8px; font-weight: 850; letter-spacing: .4px; line-height: 1; }
-.action-control { border-color: rgba(188, 142, 255, .62); background: linear-gradient(155deg, #432d83, #211b55); }
-.action-control small { color: #ddcaff; }
-.drop-control { border-color: rgba(64, 229, 183, .72); background: linear-gradient(155deg, #087b6d, #07394b); }
-.drop-control small { color: #b3ffe6; }
+.mobile-controls-header { grid-column: 1 / -1; min-height: 13px; display: flex; align-items: center; gap: 7px; padding: 0 2px 1px; color: #c8d9f5; }
+.mobile-controls-header strong { color: #cdeeff; font-size: 8px; font-weight: 900; letter-spacing: 1.35px; }
+.mobile-controls-header small { color: #8098c0; font-size: 7px; font-weight: 800; letter-spacing: .85px; }
+.controls-indicator { width: 6px; height: 6px; flex: none; border-radius: 50%; background: #c7ff5e; box-shadow: 0 0 8px rgba(199, 255, 94, .9); }
+.controls-divider { height: 1px; flex: 1; background: linear-gradient(90deg, rgba(87, 148, 228, .42), transparent); }
+.mobile-control { position: relative; isolation: isolate; min-width: 0; min-height: 58px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; overflow: hidden; padding: 5px 2px; border: 1px solid rgba(79, 153, 244, .58); border-radius: 13px; background: radial-gradient(circle at 50% 0, rgba(79, 169, 255, .19), transparent 70%), linear-gradient(155deg, #112956, #09152f 78%); box-shadow: 0 4px 0 #050a1b, inset 0 1px rgba(255, 255, 255, .16), inset 0 -1px rgba(0, 0, 0, .5), 0 0 13px rgba(27, 134, 255, .14); color: #89eaff; font-family: var(--font-body); cursor: pointer; touch-action: manipulation; user-select: none; -webkit-tap-highlight-color: transparent; transition: transform .1s ease, box-shadow .1s ease, filter .1s ease; }
+.mobile-control::before { position: absolute; z-index: -1; inset: 1px 1px auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .48), transparent); content: ""; }
+.mobile-control:active { transform: translateY(3px); box-shadow: 0 1px 0 #050a1b, inset 0 1px rgba(255, 255, 255, .18), 0 0 17px rgba(47, 188, 255, .3); filter: brightness(1.18); }
+.control-icon { position: relative; width: 21px; height: 21px; overflow: visible; fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px currentColor); }
+.mobile-control small { position: relative; color: #b2c9e8; font-size: 7px; font-weight: 900; letter-spacing: .8px; line-height: 1; }
+.direction-control { border-color: rgba(66, 197, 255, .57); }
+.action-control { border-color: rgba(190, 142, 255, .65); background: radial-gradient(circle at 50% 0, rgba(188, 132, 255, .25), transparent 70%), linear-gradient(155deg, #34245f, #171333 78%); color: #d5b1ff; box-shadow: 0 4px 0 #080616, inset 0 1px rgba(255, 255, 255, .16), inset 0 -1px rgba(0, 0, 0, .5), 0 0 13px rgba(171, 108, 255, .15); }
+.action-control small { color: #e0ccff; }
+.drop-control { border-color: rgba(136, 255, 154, .65); background: radial-gradient(circle at 50% 0, rgba(139, 255, 124, .2), transparent 70%), linear-gradient(155deg, #174b45, #092923 78%); color: #a9ff9c; box-shadow: 0 4px 0 #04140f, inset 0 1px rgba(255, 255, 255, .17), inset 0 -1px rgba(0, 0, 0, .5), 0 0 14px rgba(101, 255, 113, .16); }
+.drop-control small { color: #c6ffd1; }
 .gesture-hint { display: none; margin: 9px 0 0; color: #8fa3c6; text-align: center; font-size: 9px; }
 .gesture-hint i { margin: 0 4px; color: #3a75ca; font-style: normal; }
 .site-footer { position: relative; z-index: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 16px 14px; color: #778bb4; font-size: 9px; }
@@ -305,7 +312,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #c8ff5e; outline-offs
   .help-link svg { width: 21px; height: 21px; }
   .record-pill { display: none; }
   .dashboard-grid { width: min(100% - 28px, 620px); grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 16px 0 12px; }
-  .dashboard-grid.game-active { min-height: calc(100svh - 68px); align-content: center; align-items: center; padding-top: 8px; padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
+  .dashboard-grid.game-active { min-height: calc(100svh - 68px); align-content: center; align-items: center; padding-top: 8px; padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
   .dashboard-grid.game-active .center-column { width: 100%; max-width: 480px; margin: 0 auto; }
   .dashboard-grid.game-active .right-rail { display: none; }
   .center-column { gap: 16px; }
@@ -329,7 +336,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #c8ff5e; outline-offs
   .game-stage { padding: 13px 11px; border-radius: 17px; }
   .board { width: min(100%, 360px, max(130px, calc((100svh - 360px) / 2))); }
   .board-frame { padding: 6px; }
-  .mobile-controls { position: fixed; z-index: 8; right: 9px; bottom: 0; left: 9px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; width: min(calc(100% - 18px), 490px); margin: 0 auto; padding: 8px 9px calc(8px + env(safe-area-inset-bottom)); border: 1px solid rgba(61, 151, 255, .55); border-bottom: 0; border-radius: 17px 17px 0 0; background: linear-gradient(180deg, rgba(12, 32, 77, .98), rgba(5, 14, 39, .99)); box-shadow: 0 -8px 25px rgba(0, 0, 0, .34), 0 0 20px rgba(0, 137, 255, .14); backdrop-filter: blur(12px); }
+  .mobile-controls { position: fixed; z-index: 8; right: 9px; bottom: 0; left: 9px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; width: min(calc(100% - 18px), 490px); margin: 0 auto; padding: 9px 10px calc(9px + env(safe-area-inset-bottom)); border: 1px solid rgba(61, 151, 255, .55); border-bottom: 0; border-radius: 19px 19px 0 0; background: radial-gradient(ellipse at 15% 0, rgba(0, 198, 255, .13), transparent 45%), linear-gradient(155deg, rgba(12, 32, 77, .99), rgba(5, 14, 39, .99)); box-shadow: 0 -9px 28px rgba(0, 0, 0, .38), 0 0 23px rgba(0, 137, 255, .18), inset 0 1px rgba(255, 255, 255, .11); backdrop-filter: blur(14px); }
   .mobile-control { min-height: 58px; }
   .gesture-hint { display: block; }
 }
@@ -371,7 +378,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #c8ff5e; outline-offs
   .game-scorebar { margin-bottom: 6px; padding: 5px 8px; }
   .board-frame { padding: 5px; }
   .board { width: auto; height: min(calc(100svh - 118px), 410px); aspect-ratio: 10 / 20; }
-  .mobile-controls { position: static; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; width: min(100%, 430px); margin: 9px auto 0; padding: 6px; transform: none; border: 1px solid rgba(61, 151, 255, .55); border-radius: 13px; box-shadow: 0 5px 16px rgba(0, 0, 0, .22); }
+  .mobile-controls { position: static; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; width: min(100%, 430px); margin: 9px auto 0; padding: 7px; transform: none; border: 1px solid rgba(61, 151, 255, .55); border-radius: 15px; box-shadow: 0 5px 16px rgba(0, 0, 0, .22), inset 0 1px rgba(255, 255, 255, .08); }
   .mobile-control { min-height: 46px; }
   .gesture-hint { display: none; }
   .site-footer { min-height: 28px; padding-top: 4px; padding-bottom: 6px; }
